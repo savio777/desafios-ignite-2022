@@ -26,6 +26,7 @@ export const WrapperRow = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 export const WrapperCounter = styled.View`

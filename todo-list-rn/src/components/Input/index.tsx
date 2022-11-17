@@ -21,7 +21,7 @@ const Input: React.FC<Props> = ({ onAdd, ...props }) => {
         onBlur={() => setIsFocused(false)}
         placeholderTextColor={colors.gray[300]}
       />
-      <Button>
+      <Button onPress={onAdd}>
         <Icon name="plus-circle-outline" size={16} color="#fff" />
       </Button>
     </Container>
