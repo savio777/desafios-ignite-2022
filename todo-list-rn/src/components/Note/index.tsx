@@ -10,7 +10,7 @@ type Props = {
 } & INote;
 
 const Note: React.FC<Props> = ({ done, onDone, onExclude, text }) => (
-  <Container>
+  <Container done={done}>
     <ButtonAction side="left" onPress={onDone}>
       {done ? (
         <Circle>
@@ -25,7 +25,7 @@ const Note: React.FC<Props> = ({ done, onDone, onExclude, text }) => (
       )}
     </ButtonAction>
 
-    <Title numberOfLines={2}>{text}</Title>
+    <Title done={done} numberOfLines={2}>{text}</Title>
 
     <ButtonAction side="right" onPress={onExclude}>
       <Icon name="trash-can-outline" size={18} color={colors.gray[300]} />

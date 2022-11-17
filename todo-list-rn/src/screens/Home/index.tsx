@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { v4 as uuidv4 } from "uuid";
 
 import Logo from "../../assets/Logo.png";
 import Input from "../../components/Input";
+import ListEmptyNote from "../../components/ListEmptyNote";
 import Notes from "../../components/Note";
 import {
   Container,
@@ -96,7 +97,9 @@ const Home = () => {
               onExclude={() => handleExludeNote(item.id)}
             />
           )}
-          ListEmptyComponent={() => <Text>vazio</Text>}
+          ListEmptyComponent={() => <ListEmptyNote />}
+          ListFooterComponent={() => <View />}
+          ListFooterComponentStyle={{ height: 350 }}
         />
       </Content>
     </Container>

@@ -14,7 +14,7 @@ export const WrapperLogo = styled.View`
 `;
 
 export const Content = styled.View`
-  padding: 0 32px 0;
+  padding: 0 24px 0;
 `;
 
 export const LogoImage = styled.Image`
