@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, Text } from "react-native";
 import { v4 as uuidv4 } from "uuid";
 
@@ -36,6 +36,31 @@ const Home = () => {
     setTextNote("");
   };
 
+  const handleExludeNote = (id: string) => {
+    setListNotes((prevValue) => [
+      ...prevValue.filter((notes) => notes.id !== id),
+    ]);
+  };
+
+  const handleDoneNote = (id: string) => {
+    const noteFindIndex = listNotes.findIndex((notes) => notes.id === id);
+
+    const newListNotes = listNotes;
+
+    newListNotes[noteFindIndex].done = !newListNotes[noteFindIndex].done;
+
+    setListNotes([...newListNotes]);
+  };
+
+  useEffect(() => {
+    const counterNotes = () => {
+      setCounterCreated(listNotes.filter((notes) => !notes.done).length);
+      setCounterDone(listNotes.filter((notes) => notes.done).length);
+    };
+
+    counterNotes();
+  }, [listNotes]);
+
   return (
     <Container>
       <WrapperLogo>
@@ -65,7 +90,11 @@ const Home = () => {
           keyExtractor={(item) => item.id}
           data={listNotes}
           renderItem={({ item }) => (
-            <Notes {...item} onDone={() => {}} onExclude={() => {}} />
+            <Notes
+              {...item}
+              onDone={() => handleDoneNote(item.id)}
+              onExclude={() => handleExludeNote(item.id)}
+            />
           )}
           ListEmptyComponent={() => <Text>vazio</Text>}
         />

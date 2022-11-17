@@ -23,6 +23,8 @@ export const Circle = styled.View`
   height: 18px;
   border-radius: 9px;
   background-color: ${colors.purple.dark};
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Title = styled.Text`

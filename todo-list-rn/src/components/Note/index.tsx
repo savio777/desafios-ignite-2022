@@ -14,7 +14,7 @@ const Note: React.FC<Props> = ({ done, onDone, onExclude, text }) => (
     <ButtonAction side="left" onPress={onDone}>
       {done ? (
         <Circle>
-          <Icon name="check" color={colors.gray[100]} size={8} />
+          <Icon name="check" color={colors.gray[100]} size={12.5} />
         </Circle>
       ) : (
         <Icon
