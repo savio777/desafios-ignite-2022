@@ -13,6 +13,7 @@ type IState = {
   addNotes: (note: INote) => void;
   removeNote: (id: string) => void;
   changeStatusNote: (id: string) => void;
+  deleteAllNotes: () => void;
 };
 
 const useNoteStore = create(
@@ -45,6 +46,10 @@ const useNoteStore = create(
           };
         });
       },
+      deleteAllNotes: () => {
+        set({ notes: [] });
+      },
+      deleteEverything: () => set({}, true), // clears the entire store, actions included
     }),
     { name: "notes", getStorage: () => AsyncStorage }
   )

@@ -7,11 +7,18 @@ import { Container, ButtonAction, Circle, Title } from "./styles";
 type Props = {
   onDone: () => void;
   onExclude: () => void;
+  onPressText: () => void;
 } & INote;
 
-const Note: React.FC<Props> = ({ done, onDone, onExclude, text }) => (
+const Note: React.FC<Props> = ({
+  done,
+  onDone,
+  onExclude,
+  onPressText,
+  text,
+}) => (
   <Container done={done}>
-    <ButtonAction side="left" onPress={onDone}>
+    <ButtonAction align="left" onPress={onDone}>
       {done ? (
         <Circle>
           <Icon name="check" color={colors.gray[100]} size={12.5} />
@@ -25,9 +32,13 @@ const Note: React.FC<Props> = ({ done, onDone, onExclude, text }) => (
       )}
     </ButtonAction>
 
-    <Title done={done} numberOfLines={2}>{text}</Title>
+    <ButtonAction align="left" main onPress={onPressText}>
+      <Title done={done} numberOfLines={2}>
+        {text}
+      </Title>
+    </ButtonAction>
 
-    <ButtonAction side="right" onPress={onExclude}>
+    <ButtonAction align="right" onPress={onExclude}>
       <Icon name="trash-can-outline" size={18} color={colors.gray[300]} />
     </ButtonAction>
   </Container>

@@ -15,12 +15,6 @@ export const Container = styled.View<{ done: boolean }>`
   border-color: ${({ done }) => (done ? colors.gray[400] : colors.gray[500])};
 `;
 
-export const ButtonAction = styled.TouchableOpacity<{ side: "left" | "right" }>`
-  flex: 1;
-
-  align-items: ${({ side }) => (side === "right" ? "flex-end" : "flex-start")};
-`;
-
 export const Circle = styled.View`
   width: 18px;
   height: 18px;
@@ -32,13 +26,30 @@ export const Circle = styled.View`
 
 export const Title = styled.Text<{ done: boolean }>`
   flex: 1;
-  min-width: 60%;
   color: ${colors.gray[200]};
   font-size: 14px;
+  width: 100%;
+  text-align-vertical: center;
 
   ${({ done }) =>
     done &&
     css`
       text-decoration: line-through;
     `}
+`;
+
+export const ButtonAction = styled.TouchableOpacity<{
+  align: "left" | "right";
+  main?: boolean;
+}>`
+  flex: 1;
+  align-items: ${({ align }) =>
+    align === "right" ? "flex-end" : "flex-start"};
+  justify-items: center;
+
+  ${({ main }) =>
+    main &&
+    css`
+      min-width: 60%;
+    `};
 `;
