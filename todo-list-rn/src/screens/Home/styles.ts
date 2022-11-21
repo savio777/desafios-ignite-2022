@@ -54,3 +54,19 @@ export const Counter = styled.Text`
   height: 19px;
   border-radius: 22px;
 `;
+
+export const FloatButton = styled.TouchableOpacity`
+  background-color: ${colors.gray[500]};
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+
+  border-width: 1px;
+  border-color: ${colors.purple.dark};
+`;

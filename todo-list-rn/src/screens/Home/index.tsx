@@ -19,6 +19,7 @@ import {
   TitleCounter,
   WrapperCounter,
   Counter,
+  FloatButton,
 } from "./styles";
 
 const Home = () => {
@@ -95,10 +96,6 @@ const Home = () => {
             <Counter>{counterCreated}</Counter>
           </WrapperCounter>
 
-          <TouchableOpacity onPress={deleteAllNotes}>
-            <Icon name="trash-can-outline" size={18} color={colors.gray[300]} />
-          </TouchableOpacity>
-
           <WrapperCounter>
             <TitleCounter type="done">Concluídas</TitleCounter>
             <Counter>{counterDone}</Counter>
@@ -121,6 +118,10 @@ const Home = () => {
           ListFooterComponentStyle={{ height: 350 }}
         />
       </Content>
+
+      <FloatButton onPress={deleteAllNotes}>
+        <Icon name="trash-can-outline" size={22} color={colors.purple.dark} />
+      </FloatButton>
 
       <ModalNote
         visible={isOpenModal}
