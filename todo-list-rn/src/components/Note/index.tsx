@@ -1,6 +1,6 @@
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
-import { INote } from "../../screens/Home";
+import { INote } from "../../stores/note";
 import colors from "../../utils/colors";
 import { Container, ButtonAction, Circle, Title } from "./styles";
 

@@ -6,6 +6,7 @@ import Logo from "../../assets/Logo.png";
 import Input from "../../components/Input";
 import ListEmptyNote from "../../components/ListEmptyNote";
 import Notes from "../../components/Note";
+import useNoteStore, { INote } from "../../stores/note";
 import {
   Container,
   Content,
@@ -17,50 +18,27 @@ import {
   Counter,
 } from "./styles";
 
-export type INote = {
-  id: string;
-  text: string;
-  done: boolean;
-};
-
 const Home = () => {
+  const { addNotes, changeStatusNote, notes, removeNote } = useNoteStore();
+
   const [textNote, setTextNote] = useState("");
-  const [listNotes, setListNotes] = useState<INote[]>([]);
-  const [counterCreated, setCounterCreated] = useState(0);
-  const [counterDone, setCounterDone] = useState(0);
+
+  const counterCreated = notes.filter((notes) => !notes.done).length;
+  const counterDone = notes.filter((notes) => notes.done).length;
 
   const handleAddNote = () => {
-    setListNotes((prevValue) => [
-      ...prevValue,
-      { text: textNote, done: false, id: uuidv4() },
-    ]);
+    addNotes({ text: textNote, done: false, id: uuidv4() });
+
     setTextNote("");
   };
 
   const handleExludeNote = (id: string) => {
-    setListNotes((prevValue) => [
-      ...prevValue.filter((notes) => notes.id !== id),
-    ]);
+    removeNote(id);
   };
 
   const handleDoneNote = (id: string) => {
-    const noteFindIndex = listNotes.findIndex((notes) => notes.id === id);
-
-    const newListNotes = listNotes;
-
-    newListNotes[noteFindIndex].done = !newListNotes[noteFindIndex].done;
-
-    setListNotes([...newListNotes]);
+    changeStatusNote(id);
   };
-
-  useEffect(() => {
-    const counterNotes = () => {
-      setCounterCreated(listNotes.filter((notes) => !notes.done).length);
-      setCounterDone(listNotes.filter((notes) => notes.done).length);
-    };
-
-    counterNotes();
-  }, [listNotes]);
 
   return (
     <Container>
@@ -89,7 +67,7 @@ const Home = () => {
 
         <FlatList
           keyExtractor={(item) => item.id}
-          data={listNotes}
+          data={notes}
           renderItem={({ item }) => (
             <Notes
               {...item}
